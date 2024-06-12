@@ -11,6 +11,7 @@ namespace BestBuyCRUDApp.Data
         public Product AssignCategory();
         public IEnumerable<Category> GetCategories();
         public void InsertProduct(Product productToInsert);
+        public void DeleteProduct(Product product);
 
 
     }

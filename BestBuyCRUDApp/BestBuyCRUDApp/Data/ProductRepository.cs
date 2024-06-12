@@ -22,6 +22,13 @@ namespace BestBuyCRUDApp.Data
             return product;
         }
 
+        public void DeleteProduct(Product product)
+        {
+            _connection.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;", new { id = product.ProductID });
+            _connection.Execute("DELETE FROM Sales WHERE ProductID = @id;", new { id = product.ProductID });
+            _connection.Execute("DELETE FROM Products WHERE ProductID = @id;", new { id = product.ProductID });
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return _connection.Query<Product>("SELECT * FROM products;");
