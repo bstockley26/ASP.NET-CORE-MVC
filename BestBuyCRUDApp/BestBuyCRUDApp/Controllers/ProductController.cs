@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BestBuyCRUDApp.Data;
+using BestBuyCRUDApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,6 +29,21 @@ namespace BestBuyCRUDApp.Controllers
         {
             var product = _repository.GetProduct(id);
             return View(product);
+        }
+        public IActionResult UpdateProduct(int id)
+        {
+            Product prod = _repository.GetProduct(id);
+            if (prod == null)
+            {
+                return View("ProductNotFound");
+            }
+            return View(prod);
+        }
+        public IActionResult UpdateProductToDatabase(Product product)
+        {
+            _repository.UpdateProduct(product);
+
+            return RedirectToAction("ViewProduct", new { id = product.ProductID });
         }
     }
 }
