@@ -23,6 +23,12 @@ namespace BestBuyCRUDApp.Controllers
             var products = _repository.GetAllProducts();
             return View(products);
         }
+
+        public IActionResult ViewProduct (int id)
+        {
+            var product = _repository.GetProduct(id);
+            return View(product);
+        }
     }
 }
 
